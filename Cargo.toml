@@ -1,0 +1,15 @@
+[package]
+name = "simple_rogue_like_rust_test"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99.1"
+publish = false
+
+[dependencies]
+bevy = "0.20.1"
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
