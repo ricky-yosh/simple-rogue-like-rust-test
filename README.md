@@ -10,8 +10,20 @@ cargo run
 ```
 
 The first build compiles Bevy and can take several minutes. The app opens a
-960 × 640 window with a green player square centered on a dark background.
-Close the window to exit. Movement and dungeon gameplay are not implemented yet.
+960 × 640 window with a fixed 20 × 15 dungeon grid and a green player square.
+
+## Controls
+
+| Action | Keys |
+| --- | --- |
+| Move north | `W` or `↑` |
+| Move south | `S` or `↓` |
+| Move west | `A` or `←` |
+| Move east | `D` or `→` |
+
+Each key press moves the player one tile. Walls and the map border block
+movement. Movement is currently the only action; monsters and combat are not
+implemented.
 
 ## Checks
 
@@ -19,8 +31,11 @@ Close the window to exit. Movement and dungeon gameplay are not implemented yet.
 cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test
+cargo build
 ```
 
 ## Planning and learning
 
-Start with [the documentation index](docs/README.md).
+Start with [the documentation index](docs/README.md). The current implementation
+and its concept explanations are in
+[the grid movement checkpoint](docs/checkpoint-grid-movement.md).

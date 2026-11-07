@@ -38,6 +38,11 @@ after the fixed-map game works, so generation bugs do not hide gameplay bugs.
 Stop at step 3 for the first complete game. Steps 4–5 are follow-up experiments,
 not prerequisites for declaring the first playable successful.
 
+**Status:** step 1 is implemented and covered by headless tests; human visual
+verification is pending. See
+[the grid movement checkpoint](checkpoint-grid-movement.md). Steps 2–5 have not
+started.
+
 ## Implementation approach
 
 - Use integer grid coordinates as gameplay truth; derive rendered positions from
@@ -82,6 +87,8 @@ One engine's pilot alone cannot establish comparative productivity.
 
 ## Suggested next session
 
-Confirm this scope, initialize the Rust project, add the chosen Bevy version,
-and get a window with a visible player running. Explain the small amount of Rust
-and ECS involved as we go; stop at a working visual checkpoint before adding gameplay.
+First complete the human visual checklist for step 1: launch the game, verify the
+grid, movement, blocking, and normal window close, and record the result. After
+that, add the wait action and the first monster turn so that each successful
+player action consumes exactly one turn. Keep the grid and movement rules intact
+and add tests for the turn boundary before adding combat.
