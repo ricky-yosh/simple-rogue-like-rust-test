@@ -1,3 +1,7 @@
+> **Historical checkpoint.** This page records an earlier stage; its code
+> links and test counts describe the source at that time, not the finished game.
+> For the current implementation, see [the architecture walkthrough](architecture-walkthrough.md).
+
 # Checkpoint 2: fixed grid map and movement
 
 ## What was built

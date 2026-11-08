@@ -18,7 +18,8 @@ Read-only checks on the machine used for this research found:
 
 The compiler exceeds Bevy 0.20.1's declared minimum of Rust 1.97.1.
 The application subsequently built successfully and selected the Metal renderer
-on launch; visual confirmation remains pending. See the documentation index for checks run.
+on launch. The current game's automated checks pass; visual confirmation of the
+finished game is pending. See the documentation index for checks run.
 Another participant's machine may need different setup.
 
 ## Prerequisites on a new machine
@@ -38,8 +39,10 @@ review them before running. No system tools were installed for this checkpoint.
 
 ## Project initialization reference
 
-The repository is now initialized; use `cargo run` to launch it.
-The following is the setup sequence for reference, not something to repeat here:
+The repository is now initialized; use `cargo run` to launch it. Run through
+Cargo (rather than invoking the binary directly) so Bevy resolves the `assets/`
+directory from the project manifest. The following is the setup sequence for
+reference, not something to repeat here:
 
 ```sh
 cargo init --bin --name simple_rogue_like_rust_test .
@@ -47,11 +50,11 @@ cargo run
 cargo add bevy@0.20.1
 ```
 
-The first `cargo run` should print Rust's generated greeting. Adding the dependency
-alone does not create a game window: next replace the starter program with a
-minimal Bevy app that installs the default engine plugins, then run `cargo run`
-again. Add a 2D camera and a visible colored player shape as the first visual check.
-Use the version-matched examples linked in the overview for the actual Rust code.
+After dependency setup, replace the starter program with a minimal Bevy app that
+installs the default engine plugins, then run `cargo run` again. Add a 2D camera
+and a visible player as the first visual check. The finished project now uses that
+camera for a textured dungeon scene, HUD, and state-driven UI. Use the
+version-matched examples linked in the overview for Rust API details.
 
 Initially use Bevy's defaults to reduce setup decisions. Once the baseline works,
 consider disabling unused 3D/audio features if compile cost warrants it.
@@ -74,10 +77,10 @@ none is required to get started.
 ## First-run acceptance checklist
 
 - [ ] `cargo run` builds and opens a window without panic.
-- [ ] A colored player shape is visible through the 2D camera.
+- [ ] The dungeon and pixel-art actors are visible through the 2D camera.
 - [ ] Closing the window exits the application.
 - [ ] Record toolchain, Bevy version, build duration, and any setup problems.
-- [ ] Commit `Cargo.lock` and ignore generated `target/` output.
+- [ ] Keep `Cargo.lock`; `target/` is ignored output.
 
 If compilation succeeds but launch fails, capture the error and distinguish
 native-tool/linker problems from display/GPU problems. A headless test is not

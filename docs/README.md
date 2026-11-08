@@ -7,32 +7,45 @@ makes AI-assisted development easier to reproduce, review, and validate.
 
 ## Read in this order
 
-1. [Bevy overview](bevy-overview.md): what the engine is and what the experiment can tell us.
-2. [Setup guide](setup.md): prerequisites, current machine observations, and first-run steps.
-3. [Game and experiment plan](plan.md): a deliberately small game, milestones, and evidence to collect.
-4. [Checkpoint 2: grid map and movement](checkpoint-grid-movement.md): current code,
-   new Rust/ECS concepts, test results, experiment record, and visual checklist.
+1. [Architecture walkthrough](architecture-walkthrough.md): finished module
+   structure, components/resources/states, key-press-to-enemy-turn flow,
+   XP/upgrades, UI wiring, boss/restart, and grid-vs-render separation.
+2. [Experiment record](experiment-record.md): task scope, environment, timings,
+   failures, automated results, and what remains visually unverified.
+3. [Manual playtest checklist](playtest-checklist.md): the remaining human checks.
+4. [Setup guide](setup.md): prerequisites and machine observations.
+5. [Game and experiment plan](plan.md): the original scope and milestone history.
+6. [Bevy overview](bevy-overview.md): engine and ECS background.
 
 ## Current status
 
-- Bevy 0.20.1 runs with a 2D camera, a fixed 20 × 15 tile map, and a colored
-  player sprite.
-- `GridPosition` stores integer tile coordinates as gameplay truth; the sprite
-  transform is derived from it each time the grid position changes.
-- `W`/`A`/`S`/`D` and the arrow keys move one cardinal cell per fresh key press.
-  Walls and out-of-bounds positions block movement.
-- Nine headless tests cover startup, WASD and arrow movement, wall blocking,
-  boundary blocking, one-step-per-press behavior, and grid-to-render derivation.
-- `cargo fmt --check`, `cargo test` (9 tests),
+- Bevy 0.20.1 runs a complete short run: fixed 32 × 18 dungeon, textured player,
+  two regular enemy types, a telegraphed boss, a locked exit, XP, three repeatable
+  upgrades, win/loss screens, and full restart.
+- Integer `GridPosition` values are gameplay truth; every sprite transform is
+  derived from them.
+- `WASD`/arrows move, Space waits, bumping attacks, `1`/`2`/`3` or mouse select
+  upgrades, and `R`/the button restarts after a result.
+- **47 headless tests** cover movement, blocking, turns, combat, enemy order,
+  brute parity, death, XP, upgrade freezing/effects, boss phases, exit locks,
+  HUD state reading, restart, map reachability, asset paths, and an assembled
+  smoke test.
+- Final `cargo fmt --check`, `cargo test`,
   `cargo clippy --all-targets --all-features -- -D warnings`, and `cargo build`
-  passed on the Apple Silicon development machine.
-- `cargo run` selected the Apple M1 Metal renderer and created the window without
-  a panic. The launch was stopped by the agent after eight seconds.
-- Visual confirmation of the grid, movement, blocking, and normal window-close
-  behavior is still pending.
+  passed on the Apple M1 development machine.
+- `cargo run` created the window with the Metal renderer and reported no
+  asset-loading errors. It was stopped by the agent after about 12 seconds.
+- Visual layout, pointer hit-testing, font rendering, and a complete manual run
+  are **still pending**. See the playtest checklist.
 
-Current checkpoint: human visual verification using the checklist in
-[the grid movement checkpoint](checkpoint-grid-movement.md#human-visual-verification-checklist).
+Current checkpoint: human playtest using
+[the manual checklist](playtest-checklist.md). No product decision is blocking
+the automated implementation.
 
-Next gameplay step after visual sign-off: add a wait action and one monster turn,
-so each successful player action consumes exactly one turn (milestone 2).
+## Historical checkpoints
+
+These explain earlier stages and their line links refer to the source as it was
+then; use the architecture walkthrough for current code:
+
+- [Grid map and movement](checkpoint-grid-movement.md)
+- [Player art](checkpoint-player-art.md)

@@ -38,10 +38,12 @@ after the fixed-map game works, so generation bugs do not hide gameplay bugs.
 Stop at step 3 for the first complete game. Steps 4–5 are follow-up experiments,
 not prerequisites for declaring the first playable successful.
 
-**Status:** step 1 is implemented and covered by headless tests; human visual
-verification is pending. See
-[the grid movement checkpoint](checkpoint-grid-movement.md). Steps 2–5 have not
-started.
+**Status:** the full scoped game is implemented: steps 0–3, fixed-map turns,
+XP/upgrades, boss/exit, restart, and static Kenney artwork. Step 4 (procedural
+generation) and the animation/sound parts of step 5 remain intentionally out of
+scope for this goal. Automated checks pass; the human playtest is pending. See
+[the architecture walkthrough](architecture-walkthrough.md) and
+[the experiment record](experiment-record.md).
 
 ## Implementation approach
 
@@ -87,8 +89,8 @@ One engine's pilot alone cannot establish comparative productivity.
 
 ## Suggested next session
 
-First complete the human visual checklist for step 1: launch the game, verify the
-grid, movement, blocking, and normal window close, and record the result. After
-that, add the wait action and the first monster turn so that each successful
-player action consumes exactly one turn. Keep the grid and movement rules intact
-and add tests for the turn boundary before adding combat.
+Complete the [manual playtest checklist](playtest-checklist.md): verify the
+dungeon/UI visually, play a full win and loss, exercise mouse and keyboard upgrade
+selection and restart, and record the result. Only after that decide whether a
+follow-up experiment (for example procedural generation or animation) is worth
+starting. Do not treat the current headless checks as a visual pass.
